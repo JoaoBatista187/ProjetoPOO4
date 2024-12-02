@@ -37,6 +37,14 @@ public abstract class Usuario {
         return email;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     // Método que retorna uma representação em String do objeto Usuario
     @Override
     public String toString() {
