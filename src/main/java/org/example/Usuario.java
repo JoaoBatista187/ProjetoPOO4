@@ -3,13 +3,13 @@ package org.example;
 // Classe abstrata que representa um usuário do sistema
 public abstract class Usuario {
     // Atributo que armazena o nome do usuário
-    private String nome;
+    protected String nome;
 
     // Atributo que armazena o email do usuário
-    private String email;
+    protected String email;
 
     // Atributo que armazena a senha do usuário
-    private String senha;
+    protected String senha;
 
     // Construtor da classe Usuario
     public Usuario(String nome, String email, String senha) {

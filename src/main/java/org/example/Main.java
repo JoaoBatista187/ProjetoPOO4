@@ -99,7 +99,86 @@ public class Main {
         aluno2.logout();
         professor1.logout();
         professor2.logout();
-        
+
+        // Inicia a interface gráfica
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Login");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(600, 400);
+            frame.setLayout(new BorderLayout());
+
+            MainPanel mainPanel = new MainPanel();
+            frame.add(mainPanel, BorderLayout.CENTER);
+
+            JMenuBar menuBar = new JMenuBar();
+            JMenu fileMenu = new JMenu("Login");
+            menuBar.add(fileMenu);
+            frame.setJMenuBar(menuBar);
+
+            frame.setVisible(true);
+        });
+    }
+}
+
+// Painel principal da interface gráfica
+class MainPanel extends JPanel {
+    public MainPanel() {
+        setLayout(new CardLayout());
+
+        // Adiciona os diferentes painéis à interface
+        add(new LoginPanel(), "Login");
+        add(new DataEntryPanel(), "Data enter");
+    }
+}
+
+// Painel de login
+class LoginPanel extends JPanel {
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+
+    public LoginPanel() {
+        setLayout(new GridLayout(3, 2));
+        JLabel usernameLabel = new JLabel("Matrícula:");
+        usernameField = new JTextField();
+        JLabel passwordLabel = new JLabel("Senha:");
+        passwordField = new JPasswordField();
+        JButton loginButton = new JButton("Login");
+
+        // Ação do botão de login
+        loginButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
+            CardLayout cl = (CardLayout) getParent().getLayout();
+            cl.show(getParent(), "Data enter");
+        });
+
+        // Adiciona componentes ao painel
+        add(usernameLabel);
+        add(usernameField);
+        add(passwordLabel);
+        add(passwordField);
+        add(new JLabel());
+        add(loginButton);
+    }
+}
+
+// Painel para entrada de dados
+class DataEntryPanel extends JPanel {
+    public DataEntryPanel() {
+        setLayout(new GridLayout(3, 2));
+        JLabel dataLabel = new JLabel("Projeto:");
+        JTextField dataField = new JTextField();
+        JButton submitButton = new JButton("Enviar");
+
+        // Ação do botão de envio
+        submitButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "Projeto enviado com sucesso!");
+        });
+
+        // Adiciona componentes ao painel
+        add(dataLabel);
+        add(dataField);
+        add(new JLabel());
+        add(submitButton);
     }
 }
 
